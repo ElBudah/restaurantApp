@@ -1,0 +1,43 @@
+const Sequelize = require('sequelize');
+const database = require('./db');
+
+const report = database.define('reports', {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true,
+    },
+    report: {
+        type: Sequelize.STRING,
+        autoIncrement: false,
+        allowNull: false,
+    },
+    number: {
+        type: Sequelize.INTEGER,
+        autoIncrement: false,
+        allowNull: false,
+    },
+    user: {
+        type: Sequelize.STRING,
+        autoIncrement: false,
+        allowNull: false,
+    }
+})
+
+const clients = database.define('clients', {
+    id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        autoIncrement: false,
+    },
+    name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        autoIncrement: false,
+    }
+})
+
+module.exports = {
+    report, clients
+};
