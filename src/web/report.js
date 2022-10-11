@@ -25,19 +25,6 @@ const report = database.define('reports', {
     }
 })
 
-const clients = database.define('clients', {
-    id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: false,
-    },
-    name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        autoIncrement: false,
-    }
-})
 
-module.exports = {
-    report, clients
-};
+
+module.exports =  report;

@@ -13,8 +13,8 @@ const validateUser = async(req,res,next) => {
     
 }
 
-routes.get('/getallreports', validateUser, reports.getAllReport);
-routes.post('/addreport', validateUser,  reports.addReport);
-routes.delete('/deletereport', validateUser, reports.removeReport);
+routes.get('/getallreports', reports.getAllReport);
+routes.post('/addreport',  reports.addReport);
+routes.delete('/deletereport', reports.removeReport);
 
 module.exports = routes;
