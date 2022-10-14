@@ -1,5 +1,7 @@
 const clientsTable = require('../tables/clients');
 const database = require('../db');
+const jwt = require('jsonwebtoken');
+const cookie = require('cookie-parser');
 
 const getAllClients = async (req,res) => {
 
@@ -28,9 +30,10 @@ const addClients = async(req,res) => {
 
 const removeClient = async (req,res) => {
 
+    console.log('ok aqui');
     await database.sync();
 
-    const {removeClient} = req.body.removeClient;
+    const {removeClient} = req.body;
 
     await clientsTable.destroy({
         where: {
@@ -42,6 +45,40 @@ const removeClient = async (req,res) => {
 
 }
 
+const removeAllClients = async(req,res) => {
+    console.log('ok aqui');
+
+    await database.sync();
+    await clientsTable.destroy({
+        truncate: true
+    })
+
+    res.send('ok');
+}
+
+const login = async(req,res) => {
+    console.log('ok aqui');
+
+    let {password} = req.body;
+    let token = '';
+    console.log(password);
+
+    if(password == 'foodanddrink'){
+        token = jwt.sign({id : 1}, 'foodanddrink', {
+            expiresIn: 600
+        })
+
+    }else{
+
+    }
+    console.log(token);
+    res.cookie('token', token);
+}
+
+con
+
+
+
 module.exports = {
-    getAllClients, addClients, removeClient
+    getAllClients, addClients, removeClient, removeAllClients, login
 }

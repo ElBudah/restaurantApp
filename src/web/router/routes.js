@@ -23,5 +23,10 @@ routes.delete('/deleteallreport', reports.removeAllReport);
 routes.get('/getallclients', clients.getAllClients);
 routes.post('/addclients', clients.addClients);
 routes.delete('/removeclient', clients.removeClient);
+routes.delete('/removeallclients', clients.removeAllClients);
+
+ //Login routes
+ routes.post('/login', clients.login);
+ 
 
 module.exports = routes;
