@@ -57,28 +57,28 @@ const removeAllClients = async(req,res) => {
 }
 
 const login = async(req,res) => {
-    console.log('ok aqui');
-
     let {password} = req.body;
-    let token = '';
+
     console.log(password);
 
     if(password == 'foodanddrink'){
-        token = jwt.sign({id : 1}, 'foodanddrink', {
+        const token = jwt.sign({id : 1}, 'foodanddrink', {
             expiresIn: 600
         })
-
+        res.cookie('token', token, {
+            maxAge: 6000
+        }).send('ok');
     }else{
-
+        res.json({auth: 'invalid'})
     }
-    console.log(token);
-    res.cookie('token', token);
+    
 }
 
-con
-
-
+const logout = async(req,res) => {
+    console.log('ok logout');
+    res.clearCookie('token').sendStatus(200);
+}
 
 module.exports = {
-    getAllClients, addClients, removeClient, removeAllClients, login
+    getAllClients, addClients, removeClient, removeAllClients, login, logout
 }
