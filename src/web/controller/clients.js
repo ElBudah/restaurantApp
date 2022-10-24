@@ -58,18 +58,19 @@ const removeAllClients = async(req,res) => {
 
 const login = async(req,res) => {
     let {password} = req.body;
-
+    let validation = false;
     console.log(password);
 
     if(password == 'foodanddrink'){
         const token = jwt.sign({id : 1}, 'foodanddrink', {
             expiresIn: 600
         })
+        validation = true;
         res.cookie('token', token, {
             maxAge: 6000
-        }).send('ok');
+        }).send(validation);
     }else{
-        res.json({auth: 'invalid'})
+        res.send(validation);
     }
     
 }

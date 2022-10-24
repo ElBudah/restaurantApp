@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import '../Styles/menu.css';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import swal from 'sweetalert2';
 
 function MenuLogin() {
 
@@ -13,7 +14,23 @@ function MenuLogin() {
 
     const onSubmitData = (data) => {
         console.log(data);
-        axios.post('http://localhost:5000/login', data)
+        axios.post('http://localhost:5000/login', data).then(res => {
+            console.log(res.data);
+            
+            if(res.data === true){
+                let token = res.data;
+                window.localStorage.setItem('token', token);
+                window.location.href = '/ownermenu'
+            }
+            else{
+                swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Wrong Password',
+                    timer: 2000
+                })
+            }
+        })
         reset();
     }
 
@@ -21,7 +38,7 @@ function MenuLogin() {
         <div className="menu">
             <Typography color='secondary' style={{ fontSize: '30px' }}>Login</Typography>
             <form onSubmit={handleSubmit(onSubmitData)}>
-                <TextField {...register('password')} variant="outlined" color="secondary" label="Password" sx={{ input: { color: 'white' } }}
+                <TextField {...register('password')} type="password" variant="outlined" color="secondary" label="Password" sx={{ input: { color: 'white' } }}
                 ></TextField>
                 <p></p>
                 <Button variant="contained" type="submit" style={{ width: '150px' }}>Submit</Button>
