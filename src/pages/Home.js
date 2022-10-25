@@ -1,11 +1,11 @@
 import React from "react";
 import {Link} from 'react-router-dom';
-import Menu from "../Components/Menu";
+import TopMenu from "../Components/TopMenu";
 
 function Home(){
     return(
         <div>
-            <Menu/>
+            <TopMenu/>
         </div>
     )
 }

@@ -61,7 +61,7 @@ const login = async(req,res) => {
     let validation = false;
     console.log(password);
 
-    if(password == 'foodanddrink'){
+    if(password === 'foodanddrink'){
         const token = jwt.sign({id : 1}, 'foodanddrink', {
             expiresIn: 600
         })

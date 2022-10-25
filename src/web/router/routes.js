@@ -23,7 +23,7 @@ const validateUser = async (req, res, next) => {
 routes.get('/getallreports', validateUser, reports.getAllReport);
 routes.post('/addreport', reports.addReport);
 routes.delete('/deletereport', validateUser, reports.removeReport);
-routes.delete('/deleteallreport', validateUser, reports.removeAllReport);
+routes.delete('/deleteallreports', validateUser, reports.removeAllReports);
 
 //Client routes
 routes.get('/getallclients', validateUser, clients.getAllClients);

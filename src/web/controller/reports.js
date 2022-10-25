@@ -47,7 +47,7 @@ const getAllReport = async (req, res) => {
     res.json(alldata);
 }
 
-const removeAllReport = async(req, res) => {
+const removeAllReports = async(req, res) => {
 
     await database.sync();
     await reportTable.destroy({
@@ -59,5 +59,5 @@ const removeAllReport = async(req, res) => {
 }
 
 module.exports = {
-    addReport, removeReport, getAllReport, removeAllReport
+    addReport, removeReport, getAllReport, removeAllReports
 }
