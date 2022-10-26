@@ -21,17 +21,19 @@ function TopMenu(){
         reset()
     }
 
+
     return(
         <div className="menu">
             <Box sx={{ flexGrow: 1}}>
                 <AppBar position="static">
                     <Toolbar>
-                        <form onSubmit={handleSubmit(onSubmitData)}>
+                        <form  onSubmit={handleSubmit(onSubmitData)}>
                             <TextField type={'password'} {...register('password')} sx={{input: {color: 'white'}}} size="small" variant="outlined" autoComplete="off" placeholder="Password"></TextField>
                             <Button style={{ marginLeft: '10px'}} type="submit" variant="contained">Login</Button>
-                            <Button variant="contained">Logout</Button>
                         </form>
-                        <Typography sx={1}>Restaurante App</Typography>
+                        
+                        <Typography sx={{flexGrow: 1}}>Restaurante App</Typography>
+                        <Typography>Logged Out</Typography>
                     </Toolbar>
                 </AppBar>
             </Box>

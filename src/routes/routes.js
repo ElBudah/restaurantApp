@@ -23,6 +23,7 @@ function Router() {
                 <Route path="/logged" element={<PrivateRoute>
                     <Logged></Logged>
                 </PrivateRoute>} />
+                
             </Routes>
         </BrowserRouter>
     )
