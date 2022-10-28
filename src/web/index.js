@@ -6,8 +6,11 @@ const routes = require('./router/routes');
 const cors = require('cors');
 
 app.use(express.json());
+app.use(cors({
+    origin: true,
+    credentials: true
+}));
 app.use(cookieParser());
-app.use(cors());
 app.use('/', routes);
 
 const PORT = 5000;

@@ -6,14 +6,12 @@ const addReport = async (req, res) => {
 
     await database.sync();
 
-    const addReport = req.body.report;
-    const { number } = req.body;
+    const addReport = req.body.txtReport;
     const { user } = req.body;
     console.log(addReport);
 
     await reportTable.create({
         report: addReport,
-        number: number,
         user: user,
     })
 

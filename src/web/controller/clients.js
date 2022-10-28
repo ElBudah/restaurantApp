@@ -1,7 +1,6 @@
 const clientsTable = require('../tables/clients');
 const database = require('../db');
 const jwt = require('jsonwebtoken');
-const cookie = require('cookie-parser');
 
 const getAllClients = async (req,res) => {
 
@@ -63,11 +62,13 @@ const login = async(req,res) => {
 
     if(password === 'foodanddrink'){
         const token = jwt.sign({id : 1}, 'foodanddrink', {
-            expiresIn: 600
+            expiresIn: 7000
         })
         validation = true;
+        console.log(token);
         res.cookie('token', token, {
-            maxAge: 6000
+            httpOnly: true,
+            maxAge: 3600000
         }).send(validation);
     }else{
         res.send(validation);
@@ -80,6 +81,12 @@ const logout = async(req,res) => {
     res.clearCookie('token').sendStatus(200);
 }
 
+const gettoken = async(req,res) => {
+    let token = req.cookies.token;
+    console.log("valor do token: "+token);
+    res.json(token);
+}
+
 module.exports = {
-    getAllClients, addClients, removeClient, removeAllClients, login, logout
+    getAllClients, addClients, removeClient, removeAllClients, login, logout, gettoken
 }

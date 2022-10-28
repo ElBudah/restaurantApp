@@ -6,7 +6,8 @@ const jwt = require('jsonwebtoken');
 
 const validateUser = async (req, res, next) => {
 
-    const token = req.cookies.token;
+    const token = await req.cookies.token;
+
     console.log("Valor do token: " + token);
     jwt.verify(token, 'foodanddrink', (err) => {
         if(err) {
@@ -34,6 +35,7 @@ routes.delete('/removeallclients', validateUser, clients.removeAllClients);
 //Login routes
 routes.post('/login', clients.login);
 routes.get('/logout', clients.logout);
+routes.get('/gettoken', clients.gettoken);
 
 
 module.exports = routes;

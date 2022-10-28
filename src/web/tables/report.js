@@ -13,11 +13,6 @@ const report = database.define('reports', {
         autoIncrement: false,
         allowNull: false,
     },
-    number: {
-        type: Sequelize.INTEGER,
-        autoIncrement: false,
-        allowNull: false,
-    },
     user: {
         type: Sequelize.STRING,
         autoIncrement: false,

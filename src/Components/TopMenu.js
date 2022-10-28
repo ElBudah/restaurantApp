@@ -11,7 +11,7 @@ function TopMenu(){
 
     const onSubmitData = (data) => {
         console.log(data);
-        axios.post('http://localhost:5000/login', data).then(res => {
+        axios.post('http://localhost:5000/login', data, { withCredentials: true, credentials: 'include'}).then(res => {
             console.log(res.data);
             window.localStorage.setItem('token', res.data);
             if(res.data === true){
@@ -20,7 +20,6 @@ function TopMenu(){
         })
         reset()
     }
-
 
     return(
         <div className="menu">
