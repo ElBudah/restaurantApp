@@ -6,10 +6,14 @@ import '../Styles/addreport.css';
 import {useForm} from 'react-hook-form';
 import axios from "axios";
 import swal from 'sweetalert2';
+import { yupResolver} from '@hookform/resolvers/yup';
+import userSchema from "../validation/uservalidation";
 
 function Home() {
 
-    const {register, reset, handleSubmit} = useForm();
+    const {register, reset, formState: {errors}, handleSubmit} = useForm({
+        resolver: yupResolver(userSchema),
+    });
 
     const onSubmitData = (data) => {
         console.log(data);
@@ -31,6 +35,7 @@ function Home() {
                     <TextareaAutosize className="textarea" name="report" maxRows={8} minRows={3} {...register('txtReport')} placeholder="Type here your report..."></TextareaAutosize>
                     <p></p>
                     <TextField {...register('user')} label="User"></TextField>
+                    <h4>{errors.user?.message}</h4>
                     <p></p>
                     <Button variant="contained" type="submit">Submit Report</Button>
                 </form>

@@ -1,5 +1,9 @@
 .addreport{
     margin-top: 20px;
+    align-items: left;
+    text-align: left;
+    width: 500px;
+    margin-left: 500px;
 }
 
 .textarea{
@@ -8,3 +12,4 @@
     width: 400px;
     
 }
+
